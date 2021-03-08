@@ -17,7 +17,7 @@ func RegisterUser(u models.User) (string, bool, error) {
 	// execute instructions and then cancel the timeout
 	defer cancel()
 
-	col := MongoCN.Database("twitter").Collection("user")	
+	col := MongoCN.Database("twitter").Collection("user")
 
 	u.Password, _ = EncryptPass(u.Password)
 
@@ -26,7 +26,7 @@ func RegisterUser(u models.User) (string, bool, error) {
 		return "", false, err
 	}
 
-	 ObjID := result.InsertedID(primitive.ObjectID)
+	ObjID := result.InsertedID(primitive.ObjectID)
 	return ObjID.String(), true, nil
 
 }
