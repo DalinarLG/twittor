@@ -5,6 +5,7 @@ import (
 	"time"
 
 	"github.com/DalinarLG/twittor/models"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
 //RegisterUser insert a new user to the db
@@ -17,12 +18,12 @@ func RegisterUser(u models.User) (string, bool, error) {
 
 	u.Password, _ = EncryptPass(u.Password)
 
-	_, err := col.InsertOne(ctx, u)
+	result, err := col.InsertOne(ctx, u)
 	if err != nil {
 		return "", false, err
 	}
 
-	//ObjID, _ := result.InsertedID(primitive.ObjectID)
-	return "ok", true, nil
+	ObjID, _ := result.InsertedID.(primitive.ObjectID)
+	return ObjID.String(), true, nil
 
 }
