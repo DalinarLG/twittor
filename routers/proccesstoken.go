@@ -34,7 +34,7 @@ func ProccessToken(token string) (models.Claim, bool, string, error) {
 
 		return claims, found, UserID, nil
 	}
-
+	 
 	if !tk.Valid {
 		return claims, false, string(""), errors.New("invalid token")
 	}
