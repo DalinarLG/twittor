@@ -11,7 +11,7 @@ func ValidateJwt(next http.HandlerFunc) http.HandlerFunc {
 
 		_, _, _, err := routers.ProccessToken(r.Header.Get("Authorization"))
 		if err != nil {
-			http.Error(w, "Tokern error"+err.Error(), http.StatusBadRequest)
+			http.Error(w, "Token error "+err.Error(), http.StatusBadRequest)
 			return
 		}
 

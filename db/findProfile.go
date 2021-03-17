@@ -10,18 +10,18 @@ import (
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
-func FindProfile(id string) (models.User, error) {
+func FindProfile(id string) (models.User, error) {	
 	ctx, cancel := context.WithTimeout(context.Background(), 15*time.Second)
 	defer cancel()
-	col := MongoCN.Database("twittor").Collection("user")
+	col := MongoCN.Database("twitter").Collection("user")
 
 	var profile models.User
-	objID, _ := primitive.ObjectIDFromHex(id)
-	cond := bson.M{"_id": objID}
-	err := col.FindOne(ctx, cond).Decode(&profile)
+	objId, _ := primitive.ObjectIDFromHex(id)	
+	cond := bson.M{"_id": objId}
+	err := col.FindOne(ctx, cond).Decode(&profile)	
 	profile.Password = ""
 	if err != nil {
-		log.Println("Error buscando perfil")
+		log.Println("Error buscando perfil" + err.Error())
 		return profile, err
 	}
 

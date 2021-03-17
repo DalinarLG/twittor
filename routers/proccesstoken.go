@@ -12,9 +12,9 @@ import (
 var Email string
 var UserID string
 
-func ProccessToken(token string) (models.Claim, bool, string, error) {
+func ProccessToken(token string) (*models.Claim, bool, string, error) {
 	myKey := []byte("powermetal_blind_guardian")
-	claims := models.Claim{}
+	claims := &models.Claim{}
 	splitToken := strings.Split(token, "Bearer")
 	if len(splitToken) != 2 {
 		return claims, false, string(""), errors.New("invalid token format")
@@ -34,7 +34,7 @@ func ProccessToken(token string) (models.Claim, bool, string, error) {
 
 		return claims, found, UserID, nil
 	}
-	 
+
 	if !tk.Valid {
 		return claims, false, string(""), errors.New("invalid token")
 	}

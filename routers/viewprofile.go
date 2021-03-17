@@ -17,7 +17,7 @@ func ViewProfile(w http.ResponseWriter, r*http.Request){
 
 	user, err := db.FindProfile(ID)
 	if err != nil{
-		http.Error(w, "error searching profile"+err.Error(), http.StatusBadRequest)
+		http.Error(w, "error searching profile "+err.Error(), http.StatusBadRequest)
 		return
 	}
 
