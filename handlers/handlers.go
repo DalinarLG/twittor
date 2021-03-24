@@ -20,6 +20,9 @@ func Handlers() {
 	r.HandleFunc("/api/update", middlewares.CheckDb(middlewares.ValidateJwt(routers.UpdateUser))).Methods("PUT")
 	r.HandleFunc("/api/tweet", middlewares.CheckDb(middlewares.ValidateJwt(routers.RegisterTweet))).Methods("POST")
 	r.HandleFunc("/api/listweets", middlewares.CheckDb(middlewares.ValidateJwt(routers.ListTweets)))
+	r.HandleFunc("/api/deltweet", middlewares.CheckDb(middlewares.ValidateJwt(routers.DelTweet))).Methods("DELETE")
+	r.HandleFunc("/api/uploadavatar", middlewares.CheckDb(middlewares.ValidateJwt(routers.UploadAvatar))).Methods("POST")
+	r.HandleFunc("/api/getavatar", middlewares.CheckDb(middlewares.ValidateJwt(routers.GetAvatar))).Methods("GET")
 
 	PORT := os.Getenv("PORT")
 	if PORT == "" {
