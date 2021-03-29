@@ -11,9 +11,9 @@ import (
 )
 
 func UploadAvatar(w http.ResponseWriter, r *http.Request) {
-	file, handler, err := r.FormFile("avatar")
+	file, handler, _ := r.FormFile("avatar")
 	ext := strings.Split(handler.Filename, ".")[1]
-	path := "uploads/avatar" + UserID + "." + ext
+	path := "uploads/avatar/" + UserID + "." + ext
 
 	f, err := os.OpenFile(path, os.O_WRONLY|os.O_CREATE, 0666)
 	if err != nil {

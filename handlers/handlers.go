@@ -23,6 +23,9 @@ func Handlers() {
 	r.HandleFunc("/api/deltweet", middlewares.CheckDb(middlewares.ValidateJwt(routers.DelTweet))).Methods("DELETE")
 	r.HandleFunc("/api/uploadavatar", middlewares.CheckDb(middlewares.ValidateJwt(routers.UploadAvatar))).Methods("POST")
 	r.HandleFunc("/api/getavatar", middlewares.CheckDb(middlewares.ValidateJwt(routers.GetAvatar))).Methods("GET")
+	r.HandleFunc("/api/insertrelation", middlewares.CheckDb(middlewares.ValidateJwt(routers.InsertRelation))).Methods("POST")
+	r.HandleFunc("/api/delrelation", middlewares.CheckDb(middlewares.ValidateJwt(routers.DelRelation))).Methods("DELETE")
+	r.HandleFunc("/api/queryrelation", middlewares.CheckDb(middlewares.ValidateJwt(routers.QueryRelation))).Methods("GET")
 
 	PORT := os.Getenv("PORT")
 	if PORT == "" {
